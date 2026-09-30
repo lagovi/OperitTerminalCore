@@ -2,6 +2,7 @@ package com.ai.assistance.operit.terminal.utils
 
 import android.content.Context
 import android.content.SharedPreferences
+import com.ai.assistance.operit.terminal.R
 import com.ai.assistance.operit.terminal.data.MirrorSource
 import com.ai.assistance.operit.terminal.data.PackageManagerType
 import kotlinx.serialization.encodeToString
@@ -10,38 +11,39 @@ import kotlinx.serialization.json.Json
 class SourceManager(context: Context) {
 
     private val prefs: SharedPreferences = context.getSharedPreferences("source_settings", Context.MODE_PRIVATE)
+    private val appContext: Context = context.applicationContext
     private val json = Json { ignoreUnknownKeys = true }
 
     // 定义所有内置的源
     private val builtInAptSources = listOf(
-        MirrorSource("tuna_apt", "清华源", "https://mirrors.tuna.tsinghua.edu.cn/ubuntu-ports/", true),
-        MirrorSource("bfsu_apt", "北外源", "https://mirrors.bfsu.edu.cn/ubuntu-ports/", true),
-        MirrorSource("aliyun_apt", "阿里源", "https://mirrors.aliyun.com/ubuntu-ports/", true),
-        MirrorSource("ustc_apt", "中科大源", "https://mirrors.ustc.edu.cn/ubuntu-ports/", true),
-        MirrorSource("official_apt", "官方源", "http://ports.ubuntu.com/ubuntu-ports/", false)
+        MirrorSource("tuna_apt", appContext.getString(R.string.terminal_mirror_source_tuna), "https://mirrors.tuna.tsinghua.edu.cn/ubuntu-ports/", true),
+        MirrorSource("bfsu_apt", appContext.getString(R.string.terminal_mirror_source_bfsu), "https://mirrors.bfsu.edu.cn/ubuntu-ports/", true),
+        MirrorSource("aliyun_apt", appContext.getString(R.string.terminal_mirror_source_aliyun), "https://mirrors.aliyun.com/ubuntu-ports/", true),
+        MirrorSource("ustc_apt", appContext.getString(R.string.terminal_mirror_source_ustc), "https://mirrors.ustc.edu.cn/ubuntu-ports/", true),
+        MirrorSource("official_apt", appContext.getString(R.string.terminal_mirror_source_official), "http://ports.ubuntu.com/ubuntu-ports/", false)
     )
 
     private val builtInPipSources = listOf(
-        MirrorSource("tuna_pip", "清华源", "https://pypi.tuna.tsinghua.edu.cn/simple", true),
-        MirrorSource("bfsu_pip", "北外源", "https://mirrors.bfsu.edu.cn/pypi/web/simple", true),
-        MirrorSource("aliyun_pip", "阿里源", "https://mirrors.aliyun.com/pypi/simple/", true),
-        MirrorSource("ustc_pip", "中科大源", "https://pypi.mirrors.ustc.edu.cn/simple/", true),
-        MirrorSource("official_pip", "官方源", "https://pypi.org/simple", true)
+        MirrorSource("tuna_pip", appContext.getString(R.string.terminal_mirror_source_tuna), "https://pypi.tuna.tsinghua.edu.cn/simple", true),
+        MirrorSource("bfsu_pip", appContext.getString(R.string.terminal_mirror_source_bfsu), "https://mirrors.bfsu.edu.cn/pypi/web/simple", true),
+        MirrorSource("aliyun_pip", appContext.getString(R.string.terminal_mirror_source_aliyun), "https://mirrors.aliyun.com/pypi/simple/", true),
+        MirrorSource("ustc_pip", appContext.getString(R.string.terminal_mirror_source_ustc), "https://pypi.mirrors.ustc.edu.cn/simple/", true),
+        MirrorSource("official_pip", appContext.getString(R.string.terminal_mirror_source_official), "https://pypi.org/simple", true)
     )
     
     private val builtInNpmSources = listOf(
-        MirrorSource("taobao_npm", "淘宝源", "https://registry.npmmirror.com/", true),
-        MirrorSource("tencent_npm", "腾讯源", "https://mirrors.cloud.tencent.com/npm/", true),
-        MirrorSource("huawei_npm", "华为源", "https://repo.huaweicloud.com/repository/npm/", true),
-        MirrorSource("official_npm", "官方源", "https://registry.npmjs.org/", true)
+        MirrorSource("taobao_npm", appContext.getString(R.string.terminal_mirror_source_taobao), "https://registry.npmmirror.com/", true),
+        MirrorSource("tencent_npm", appContext.getString(R.string.terminal_mirror_source_tencent), "https://mirrors.cloud.tencent.com/npm/", true),
+        MirrorSource("huawei_npm", appContext.getString(R.string.terminal_mirror_source_huawei), "https://repo.huaweicloud.com/repository/npm/", true),
+        MirrorSource("official_npm", appContext.getString(R.string.terminal_mirror_source_official), "https://registry.npmjs.org/", true)
     )
     
     private val builtInRustSources = listOf(
-        MirrorSource("ustc_rust", "中科大源", "https://mirrors.ustc.edu.cn/rust-static", true),
-        MirrorSource("tuna_rust", "清华源", "https://mirrors.tuna.tsinghua.edu.cn/rustup", true),
-        MirrorSource("bfsu_rust", "北外源", "https://mirrors.bfsu.edu.cn/rustup", true),
-        MirrorSource("sjtu_rust", "上海交大源", "https://mirrors.sjtug.sjtu.edu.cn/rust-static", true),
-        MirrorSource("official_rust", "官方源", "https://static.rust-lang.org", true)
+        MirrorSource("ustc_rust", appContext.getString(R.string.terminal_mirror_source_ustc), "https://mirrors.ustc.edu.cn/rust-static", true),
+        MirrorSource("tuna_rust", appContext.getString(R.string.terminal_mirror_source_tuna), "https://mirrors.tuna.tsinghua.edu.cn/rustup", true),
+        MirrorSource("bfsu_rust", appContext.getString(R.string.terminal_mirror_source_bfsu), "https://mirrors.bfsu.edu.cn/rustup", true),
+        MirrorSource("sjtu_rust", appContext.getString(R.string.terminal_mirror_source_sjtu), "https://mirrors.sjtug.sjtu.edu.cn/rust-static", true),
+        MirrorSource("official_rust", appContext.getString(R.string.terminal_mirror_source_official), "https://static.rust-lang.org", true)
     )
 
     // 获取自定义源

@@ -9,10 +9,12 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.ai.assistance.operit.terminal.R
 import com.ai.assistance.operit.terminal.data.SSHAuthType
 import com.ai.assistance.operit.terminal.data.SSHConfig
 
@@ -27,7 +29,7 @@ fun SSHConfigScreen(
 ) {
     Column(modifier = Modifier.padding(16.dp)) {
         Text(
-            text = "SSH 连接配置",
+            text = stringResource(R.string.terminal_ssh_config_title),
             fontSize = 18.sp,
             fontWeight = FontWeight.Bold,
             color = SettingsTheme.onSurfaceColor
@@ -38,7 +40,7 @@ fun SSHConfigScreen(
         if (config == null) {
             // 无配置，显示添加按钮
             Text(
-                text = "暂无SSH配置",
+                text = stringResource(R.string.terminal_ssh_config_empty),
                 color = SettingsTheme.onSurfaceVariant,
                 modifier = Modifier.padding(bottom = 16.dp)
             )
@@ -50,7 +52,7 @@ fun SSHConfigScreen(
                     containerColor = SettingsTheme.primaryColor
                 )
             ) {
-                Text("设置 SSH 配置")
+                Text(stringResource(R.string.terminal_ssh_config_set_action))
             }
             
             if (showDialog) {
@@ -102,7 +104,13 @@ private fun SSHConfigCard(
             )
             Spacer(modifier = Modifier.height(4.dp))
             Text(
-                text = "认证方式: ${if (config.authType == SSHAuthType.PASSWORD) "密码" else "公钥"}",
+                text = stringResource(
+                    R.string.terminal_ssh_config_auth_type,
+                    stringResource(
+                        if (config.authType == SSHAuthType.PASSWORD) R.string.terminal_ssh_auth_type_password
+                        else R.string.terminal_ssh_auth_type_public_key
+                    )
+                ),
                 fontSize = 14.sp,
                 color = SettingsTheme.onSurfaceVariant
             )
@@ -126,7 +134,7 @@ private fun SSHConfigCard(
                         modifier = Modifier.padding(end = 8.dp)
                     )
                     Text(
-                        text = "提示：使用 exit 退出 SSH 回到本地终端",
+                        text = stringResource(R.string.terminal_ssh_config_exit_hint),
                         fontSize = 12.sp,
                         color = SettingsTheme.onSurfaceColor
                     )
@@ -146,9 +154,9 @@ private fun SSHConfigCard(
                         contentColor = SettingsTheme.primaryColor
                     )
                 ) {
-                    Icon(Icons.Default.Edit, "编辑", modifier = Modifier.size(18.dp))
+                    Icon(Icons.Default.Edit, stringResource(R.string.terminal_edit), modifier = Modifier.size(18.dp))
                     Spacer(modifier = Modifier.width(4.dp))
-                    Text("编辑")
+                    Text(stringResource(R.string.terminal_edit))
                 }
                 
                 OutlinedButton(
@@ -158,9 +166,9 @@ private fun SSHConfigCard(
                         contentColor = SettingsTheme.errorColor
                     )
                 ) {
-                    Icon(Icons.Default.Delete, "删除", modifier = Modifier.size(18.dp))
+                    Icon(Icons.Default.Delete, stringResource(R.string.delete), modifier = Modifier.size(18.dp))
                     Spacer(modifier = Modifier.width(4.dp))
-                    Text("删除")
+                    Text(stringResource(R.string.delete))
                 }
             }
         }
@@ -182,8 +190,18 @@ private fun SSHConfigCard(
     if (showDeleteDialog) {
         AlertDialog(
             onDismissRequest = { showDeleteDialog = false },
-            title = { Text("确认删除", color = SettingsTheme.onSurfaceColor) },
-            text = { Text("确定要删除此SSH配置吗？", color = SettingsTheme.onSurfaceColor) },
+            title = {
+                Text(
+                    stringResource(R.string.terminal_ssh_config_delete_title),
+                    color = SettingsTheme.onSurfaceColor
+                )
+            },
+            text = {
+                Text(
+                    stringResource(R.string.terminal_ssh_config_delete_message),
+                    color = SettingsTheme.onSurfaceColor
+                )
+            },
             confirmButton = {
                 Button(
                     onClick = {
@@ -194,12 +212,12 @@ private fun SSHConfigCard(
                         containerColor = SettingsTheme.errorColor
                     )
                 ) {
-                    Text("删除")
+                    Text(stringResource(R.string.delete))
                 }
             },
             dismissButton = {
                 TextButton(onClick = { showDeleteDialog = false }) {
-                    Text("取消", color = SettingsTheme.primaryColor)
+                    Text(stringResource(R.string.cancel), color = SettingsTheme.primaryColor)
                 }
             },
             containerColor = SettingsTheme.surfaceColor
@@ -239,7 +257,11 @@ fun SSHConfigEditDialog(
         onDismissRequest = onDismiss,
         title = {
             Text(
-                text = if (config == null) "添加 SSH 配置" else "编辑 SSH 配置",
+                text = if (config == null) {
+                    stringResource(R.string.terminal_ssh_config_add_title)
+                } else {
+                    stringResource(R.string.terminal_ssh_config_edit_title)
+                },
                 color = SettingsTheme.onSurfaceColor
             )
         },
@@ -249,7 +271,7 @@ fun SSHConfigEditDialog(
                     OutlinedTextField(
                         value = host,
                         onValueChange = { host = it },
-                        label = { Text("主机地址") },
+                        label = { Text(stringResource(R.string.terminal_ssh_field_host)) },
                         singleLine = true,
                         modifier = Modifier.fillMaxWidth(),
                         colors = OutlinedTextFieldDefaults.colors(
@@ -269,7 +291,7 @@ fun SSHConfigEditDialog(
                     OutlinedTextField(
                         value = port,
                         onValueChange = { port = it },
-                        label = { Text("端口") },
+                        label = { Text(stringResource(R.string.terminal_ssh_field_port)) },
                         singleLine = true,
                         modifier = Modifier.fillMaxWidth(),
                         colors = OutlinedTextFieldDefaults.colors(
@@ -289,7 +311,7 @@ fun SSHConfigEditDialog(
                     OutlinedTextField(
                         value = username,
                         onValueChange = { username = it },
-                        label = { Text("用户名") },
+                        label = { Text(stringResource(R.string.terminal_ssh_field_username)) },
                         singleLine = true,
                         modifier = Modifier.fillMaxWidth(),
                         colors = OutlinedTextFieldDefaults.colors(
@@ -314,13 +336,13 @@ fun SSHConfigEditDialog(
                         FilterChip(
                             selected = authType == SSHAuthType.PASSWORD,
                             onClick = { authType = SSHAuthType.PASSWORD },
-                            label = { Text("密码认证") },
+                            label = { Text(stringResource(R.string.terminal_ssh_auth_method_password)) },
                             modifier = Modifier.weight(1f)
                         )
                         FilterChip(
                             selected = authType == SSHAuthType.PUBLIC_KEY,
                             onClick = { authType = SSHAuthType.PUBLIC_KEY },
-                            label = { Text("公钥认证") },
+                            label = { Text(stringResource(R.string.terminal_ssh_auth_method_public_key)) },
                             modifier = Modifier.weight(1f)
                         )
                     }
@@ -334,7 +356,7 @@ fun SSHConfigEditDialog(
                         OutlinedTextField(
                             value = password,
                             onValueChange = { password = it },
-                            label = { Text("密码") },
+                            label = { Text(stringResource(R.string.terminal_ssh_field_password)) },
                             singleLine = true,
                             visualTransformation = PasswordVisualTransformation(),
                             modifier = Modifier.fillMaxWidth(),
@@ -353,7 +375,7 @@ fun SSHConfigEditDialog(
                         OutlinedTextField(
                             value = privateKeyPath,
                             onValueChange = { privateKeyPath = it },
-                            label = { Text("私钥路径") },
+                            label = { Text(stringResource(R.string.terminal_ssh_field_private_key)) },
                             singleLine = true,
                             modifier = Modifier.fillMaxWidth(),
                             colors = OutlinedTextFieldDefaults.colors(
@@ -373,7 +395,7 @@ fun SSHConfigEditDialog(
                         OutlinedTextField(
                             value = passphrase,
                             onValueChange = { passphrase = it },
-                            label = { Text("密钥密码（可选）") },
+                            label = { Text(stringResource(R.string.terminal_ssh_field_passphrase)) },
                             singleLine = true,
                             visualTransformation = PasswordVisualTransformation(),
                             modifier = Modifier.fillMaxWidth(),
@@ -409,13 +431,13 @@ fun SSHConfigEditDialog(
                     ) {
                         Column(modifier = Modifier.weight(1f)) {
                             Text(
-                                text = "启用心跳包",
+                                text = stringResource(R.string.terminal_ssh_keepalive_enable),
                                 color = SettingsTheme.onSurfaceColor,
                                 fontSize = 14.sp,
                                 fontWeight = FontWeight.Medium
                             )
                             Text(
-                                text = "防止连接因闲置而断开",
+                                text = stringResource(R.string.terminal_ssh_keepalive_desc),
                                 color = SettingsTheme.onSurfaceVariant,
                                 fontSize = 12.sp
                             )
@@ -439,7 +461,7 @@ fun SSHConfigEditDialog(
                         OutlinedTextField(
                             value = keepAliveInterval,
                             onValueChange = { keepAliveInterval = it },
-                            label = { Text("心跳间隔（秒）") },
+                            label = { Text(stringResource(R.string.terminal_ssh_keepalive_interval)) },
                             singleLine = true,
                             modifier = Modifier.fillMaxWidth(),
                             colors = OutlinedTextFieldDefaults.colors(
@@ -457,7 +479,7 @@ fun SSHConfigEditDialog(
                     
                     item {
                         Text(
-                            text = "💡 建议设置为 30-60 秒，每隔此时间向服务器发送心跳",
+                            text = stringResource(R.string.terminal_ssh_keepalive_tip),
                             color = SettingsTheme.onSurfaceVariant,
                             fontSize = 11.sp,
                             modifier = Modifier.padding(horizontal = 4.dp)
@@ -485,13 +507,13 @@ fun SSHConfigEditDialog(
                     ) {
                         Column(modifier = Modifier.weight(1f)) {
                             Text(
-                                text = "启用反向挂载",
+                                text = stringResource(R.string.terminal_ssh_reverse_enable),
                                 color = SettingsTheme.onSurfaceColor,
                                 fontSize = 14.sp,
                                 fontWeight = FontWeight.Medium
                             )
                             Text(
-                                text = "允许远程服务器挂载本地文件系统",
+                                text = stringResource(R.string.terminal_ssh_reverse_desc),
                                 color = SettingsTheme.onSurfaceVariant,
                                 fontSize = 12.sp
                             )
@@ -519,25 +541,25 @@ fun SSHConfigEditDialog(
                     ) {
                         Column(modifier = Modifier.padding(12.dp)) {
                             Text(
-                                text = "📋 反向挂载说明",
+                                text = stringResource(R.string.terminal_ssh_reverse_info_title),
                                 color = SettingsTheme.primaryColor,
                                 fontSize = 13.sp,
                                 fontWeight = FontWeight.Bold
                             )
                             Spacer(Modifier.height(6.dp))
                             Text(
-                                text = "• 本地需要：openssh-server（在环境配置中安装）",
+                                text = stringResource(R.string.terminal_ssh_reverse_req_local),
                                 color = SettingsTheme.onSurfaceColor,
                                 fontSize = 12.sp
                             )
                             Text(
-                                text = "• 远程需要：sshfs（在远程服务器安装）",
+                                text = stringResource(R.string.terminal_ssh_reverse_req_remote),
                                 color = SettingsTheme.onSurfaceColor,
                                 fontSize = 12.sp
                             )
                             Spacer(Modifier.height(4.dp))
                             Text(
-                                text = "启用后，远程服务器可通过 ~/storage 和 ~/sdcard 访问本地文件",
+                                text = stringResource(R.string.terminal_ssh_reverse_access_note),
                                 color = SettingsTheme.onSurfaceVariant,
                                 fontSize = 11.sp
                             )
@@ -553,7 +575,7 @@ fun SSHConfigEditDialog(
                         OutlinedTextField(
                             value = remoteTunnelPort,
                             onValueChange = { remoteTunnelPort = it },
-                            label = { Text("远程隧道端口") },
+                            label = { Text(stringResource(R.string.terminal_ssh_field_remote_tunnel_port)) },
                             singleLine = true,
                             modifier = Modifier.fillMaxWidth(),
                             colors = OutlinedTextFieldDefaults.colors(
@@ -573,7 +595,7 @@ fun SSHConfigEditDialog(
                         OutlinedTextField(
                             value = localSshPort,
                             onValueChange = { localSshPort = it },
-                            label = { Text("本地SSH端口") },
+                            label = { Text(stringResource(R.string.terminal_ssh_field_local_port)) },
                             singleLine = true,
                             modifier = Modifier.fillMaxWidth(),
                             colors = OutlinedTextFieldDefaults.colors(
@@ -593,7 +615,7 @@ fun SSHConfigEditDialog(
                         OutlinedTextField(
                             value = localSshUsername,
                             onValueChange = { localSshUsername = it },
-                            label = { Text("本地SSH用户名") },
+                            label = { Text(stringResource(R.string.terminal_ssh_field_local_username)) },
                             singleLine = true,
                             modifier = Modifier.fillMaxWidth(),
                             colors = OutlinedTextFieldDefaults.colors(
@@ -613,7 +635,7 @@ fun SSHConfigEditDialog(
                         OutlinedTextField(
                             value = localSshPassword,
                             onValueChange = { localSshPassword = it },
-                            label = { Text("本地SSH密码") },
+                            label = { Text(stringResource(R.string.terminal_ssh_field_local_password)) },
                             singleLine = true,
                             visualTransformation = PasswordVisualTransformation(),
                             modifier = Modifier.fillMaxWidth(),
@@ -660,12 +682,12 @@ fun SSHConfigEditDialog(
                     containerColor = SettingsTheme.primaryColor
                 )
             ) {
-                Text("保存")
+                Text(stringResource(R.string.terminal_save))
             }
         },
         dismissButton = {
             TextButton(onClick = onDismiss) {
-                Text("取消", color = SettingsTheme.primaryColor)
+                Text(stringResource(R.string.cancel), color = SettingsTheme.primaryColor)
             }
         },
         containerColor = SettingsTheme.surfaceColor

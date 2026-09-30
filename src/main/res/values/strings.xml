@@ -1,235 +1,299 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!-- SetupScreen -->
-    <string name="setup_title">环境配置</string>
-    <string name="setup_subtitle">选择需要安装的开发环境和工具（支持并行安装）</string>
-    <string name="skip">跳过</string>
-    <string name="start_setup">开始配置</string>
-    <string name="select_all">全选</string>
-    <string name="expand">展开</string>
-    <string name="collapse">收起</string>
-    <string name="installed">已安装</string>
-    <string name="operit_required">Operit 必须</string>
+    <string name="setup_title">Environment Setup</string>
+    <string name="setup_subtitle">Select development environments and tools to install (parallel installation supported)</string>
+    <string name="skip">Skip</string>
+    <string name="start_setup">Start Setup</string>
+    <string name="select_all">Select All</string>
+    <string name="expand">Expand</string>
+    <string name="collapse">Collapse</string>
+    <string name="installed">Installed</string>
+    <string name="operit_required">Operit Required</string>
     
     <!-- Dialog -->
-    <string name="setup_dialog_title">温馨提示</string>
-    <string name="setup_dialog_message">即将开始环境配置，这可能需要一些时间。请尽量保持应用在前台或小窗运行以确保配置顺利进行。\n\n如果配置意外中断，不必担心。下次回到本页面再次开始配置时，会自动从上次的进度继续。</string>
-    <string name="dialog_confirm">我明白了</string>
-    <string name="dialog_cancel">取消</string>
+    <string name="setup_dialog_title">Notice</string>
+    <string name="setup_dialog_message">The environment setup is about to begin, which may take some time. Please try to keep the app in foreground or floating window mode to ensure smooth configuration.\n\nIf the configuration is interrupted unexpectedly, don\'t worry. The next time you return to this page to start configuration, it will automatically continue from the previous progress.</string>
+    <string name="dialog_confirm">I Understand</string>
+    <string name="dialog_cancel">Cancel</string>
     
     <!-- Package Categories -->
-    <string name="category_nodejs_name">Node.js 环境</string>
-    <string name="category_nodejs_desc">Node.js 和前端开发环境</string>
-    <string name="category_python_name">Python 环境</string>
-    <string name="category_python_desc">Python 开发环境</string>
-    <string name="category_java_name">Java 环境</string>
-    <string name="category_java_desc">Java 开发环境</string>
-    <string name="category_rust_name">Rust (Cargo) 环境</string>
-    <string name="category_rust_desc">Rust 开发环境和包管理器</string>
-    <string name="category_go_name">Go 环境</string>
-    <string name="category_go_desc">Go 语言开发环境</string>
-    <string name="category_ssh_name">SSH 工具</string>
-    <string name="category_ssh_desc">SSH 客户端和密码认证工具</string>
+    <string name="category_nodejs_name">Node.js Environment</string>
+    <string name="category_nodejs_desc">Node.js and frontend development environment</string>
+    <string name="category_python_name">Python Environment</string>
+    <string name="category_python_desc">Python development environment</string>
+    <string name="category_java_name">Java Environment</string>
+    <string name="category_java_desc">Java development environment</string>
+    <string name="category_rust_name">Rust (Cargo) Environment</string>
+    <string name="category_rust_desc">Rust development environment and package manager</string>
+    <string name="category_go_name">Go Environment</string>
+    <string name="category_go_desc">Go programming language environment</string>
+    <string name="category_ssh_name">SSH Tools</string>
+    <string name="category_ssh_desc">SSH client and password authentication tools</string>
     
     <!-- Package Items -->
     <string name="package_nodejs_name">Node.js</string>
-    <string name="package_nodejs_desc">JavaScript 运行时</string>
+    <string name="package_nodejs_desc">JavaScript runtime</string>
     <string name="package_pnpm_name">PNPM</string>
-    <string name="package_pnpm_desc">快速的包管理器和 TypeScript</string>
-    <string name="package_python_link_name">Python 链接</string>
-    <string name="package_python_link_desc">将python命令链接到python3</string>
-    <string name="package_python_venv_name">虚拟环境</string>
-    <string name="package_python_venv_desc">Python 虚拟环境支持</string>
+    <string name="package_pnpm_desc">Fast package manager and TypeScript</string>
+    <string name="package_python_link_name">Python Link</string>
+    <string name="package_python_link_desc">Link python command to python3</string>
+    <string name="package_python_venv_name">Virtual Environment</string>
+    <string name="package_python_venv_desc">Python virtual environment support</string>
     <string name="package_python_pip_name">Pip</string>
-    <string name="package_python_pip_desc">Python 包管理器</string>
+    <string name="package_python_pip_desc">Python package manager</string>
     <string name="package_uv_name">uv</string>
-    <string name="package_uv_desc">一个用 Rust 编写的极速 Python 包安装器</string>
+    <string name="package_uv_desc">An extremely fast Python package installer written in Rust</string>
     <string name="package_openjdk_name">OpenJDK 17</string>
-    <string name="package_openjdk_desc">Java 17 开发环境</string>
+    <string name="package_openjdk_desc">Java 17 development environment</string>
     <string name="package_gradle_name">Gradle</string>
-    <string name="package_gradle_desc">现代化的构建自动化工具</string>
+    <string name="package_gradle_desc">Modern build automation tool</string>
     <string name="package_rust_name">Rust &amp; Cargo</string>
-    <string name="package_rust_desc">通过 rustup 安装 Rust 工具链</string>
+    <string name="package_rust_desc">Install Rust toolchain via rustup</string>
     <string name="package_go_name">Go</string>
-    <string name="package_go_desc">Go 编程语言</string>
-    <string name="package_ssh_client_name">SSH 客户端</string>
-    <string name="package_ssh_client_desc">SSH 连接客户端</string>
+    <string name="package_go_desc">Go programming language</string>
+    <string name="package_ssh_client_name">SSH Client</string>
+    <string name="package_ssh_client_desc">SSH connection client</string>
     <string name="package_sshpass_name">sshpass</string>
-    <string name="package_sshpass_desc">SSH 密码认证工具</string>
+    <string name="package_sshpass_desc">SSH password authentication tool</string>
     
     <!-- SettingsScreen -->
-    <string name="settings_title">设置</string>
-    <string name="back">返回</string>
+    <string name="settings_title">Settings</string>
+    <string name="back">Back</string>
     
     <!-- FTP Server Section -->
-    <string name="ftp_server_title">FTP文件服务器</string>
-    <string name="ftp_server_stopping">停止中…</string>
-    <string name="ftp_server_stop">停止</string>
-    <string name="ftp_server_start">启动</string>
-    <string name="ftp_server_tip">💡 提示：使用FTP客户端连接到上述地址即可访问Ubuntu文件系统</string>
-    <string name="ftp_server_suggestion">📱 建议：开启小窗模式保持应用运行，确保FTP服务持续可用</string>
+    <string name="ftp_server_title">FTP File Server</string>
+    <string name="ftp_server_stopping">Stopping…</string>
+    <string name="ftp_server_stop">Stop</string>
+    <string name="ftp_server_start">Start</string>
+    <string name="ftp_server_tip">💡 Tip: Use an FTP client to connect to the above address to access the Ubuntu file system</string>
+    <string name="ftp_server_suggestion">📱 Suggestion: Enable floating window mode to keep the app running and ensure FTP service availability</string>
     
     <!-- Storage Management Section -->
-    <string name="storage_management_title">存储管理</string>
-    <string name="ubuntu_environment_size">Ubuntu环境大小: %s</string>
-    <string name="refresh_size_calculating">计算中…</string>
-    <string name="refresh_size">刷新</string>
-    <string name="reset_environment">重置</string>
+    <string name="storage_management_title">Storage Management</string>
+    <string name="ubuntu_environment_size">Ubuntu Environment Size: %s</string>
+    <string name="refresh_size_calculating">Calculating…</string>
+    <string name="refresh_size">Refresh</string>
+    <string name="reset_environment">Reset</string>
     
     <!-- Project Section -->
-    <string name="project_address_title">项目地址</string>
+    <string name="project_address_title">Project Repository</string>
     <string name="project_name">AAswordman/OperitTerminal</string>
-    <string name="visit_project">访问</string>
-    <string name="check_updates">检查</string>
-    <string name="update_now">更新</string>
+    <string name="visit_project">Visit</string>
+    <string name="check_updates">Check</string>
+    <string name="update_now">Update</string>
     
     <!-- Reset Environment Dialog -->
-    <string name="reset_dialog_title">⚠️ 危险操作</string>
-    <string name="reset_dialog_description">此操作将完全删除Ubuntu虚拟环境，包括：</string>
-    <string name="reset_dialog_item1">• 所有已安装的软件包</string>
-    <string name="reset_dialog_item2">• 用户数据和配置文件</string>
-    <string name="reset_dialog_item3">• 系统文件和环境设置</string>
-    <string name="reset_dialog_warning">操作后需要重新初始化Ubuntu环境，这可能需要几分钟时间。</string>
-    <string name="reset_dialog_ftp_warning">FTP服务器也将被停止。确定要继续吗？</string>
-    <string name="reset_confirm">确定重置</string>
+    <string name="reset_dialog_title">⚠️ Dangerous Operation</string>
+    <string name="reset_dialog_description">This operation will completely delete the Ubuntu virtual environment, including:</string>
+    <string name="reset_dialog_item1">• All installed software packages</string>
+    <string name="reset_dialog_item2">• User data and configuration files</string>
+    <string name="reset_dialog_item3">• System files and environment settings</string>
+    <string name="reset_dialog_warning">After the operation, the Ubuntu environment will need to be reinitialized, which may take several minutes.</string>
+    <string name="reset_dialog_ftp_warning">The FTP server will also be stopped. Are you sure you want to continue?</string>
+    <string name="reset_confirm">Confirm Reset</string>
     
     <!-- SettingsViewModel -->
-    <string name="cache_size_default">点击刷新计算</string>
-    <string name="update_status_default">点击检查更新</string>
-    <string name="ftp_server_not_running">FTP服务器未运行</string>
-    <string name="cache_calculating">计算中…</string>
-    <string name="cache_calculation_cancelled">计算已取消</string>
-    <string name="cache_calculation_failed">计算失败</string>
-    <string name="environment_resetting">正在重置环境…</string>
-    <string name="environment_reset_complete">环境已重置 (需要重启应用)</string>
-    <string name="environment_reset_failed">重置失败: %s</string>
-    <string name="checking_updates">检查更新中…</string>
-    <string name="update_available">发现新版本: %1$s (当前: %2$s)</string>
-    <string name="up_to_date">已是最新版本 (%s)</string>
-    <string name="update_check_failed">检查失败: %s</string>
-    <string name="ftp_server_starting">正在启动FTP服务器…</string>
-    <string name="ftp_server_start_failed_env">启动失败 (请确保Ubuntu环境已初始化)</string>
-    <string name="ftp_server_start_failed">启动失败: %s</string>
-    <string name="ftp_server_stopping_progress">正在停止FTP服务器…</string>
-    <string name="ftp_server_stopped">FTP服务器已停止</string>
-    <string name="ftp_server_stop_failed">停止失败</string>
-    <string name="ftp_server_stop_failed_with_error">停止失败: %s</string>
+    <string name="cache_size_default">Click to refresh</string>
+    <string name="update_status_default">Click to check updates</string>
+    <string name="ftp_server_not_running">FTP server not running</string>
+    <string name="cache_calculating">Calculating…</string>
+    <string name="cache_calculation_cancelled">Calculation cancelled</string>
+    <string name="cache_calculation_failed">Calculation failed</string>
+    <string name="environment_resetting">Resetting environment…</string>
+    <string name="environment_reset_complete">Environment reset (restart required)</string>
+    <string name="environment_reset_failed">Reset failed: %s</string>
+    <string name="checking_updates">Checking for updates…</string>
+    <string name="update_available">Update available: %1$s (current: %2$s)</string>
+    <string name="up_to_date">Up to date (%s)</string>
+    <string name="update_check_failed">Check failed: %s</string>
+    <string name="ftp_server_starting">Starting FTP server…</string>
+    <string name="ftp_server_start_failed_env">Start failed (ensure Ubuntu environment is initialized)</string>
+    <string name="ftp_server_start_failed">Start failed: %s</string>
+    <string name="ftp_server_stopping_progress">Stopping FTP server…</string>
+    <string name="ftp_server_stopped">FTP server stopped</string>
+    <string name="ftp_server_stop_failed">Stop failed</string>
+    <string name="ftp_server_stop_failed_with_error">Stop failed: %s</string>
     
     <!-- TerminalHome -->
-    <string name="confirm_delete_session">确认删除会话</string>
-    <string name="delete_session_message">确定要删除会话 \"%s\" 吗？\n\n此操作不可撤销，会话中的所有数据将永久丢失。</string>
-    <string name="delete">删除</string>
-    <string name="cancel">取消</string>
-    <string name="new_session">新建会话</string>
-    <string name="close_session">关闭会话</string>
-    <string name="executing">执行中…</string>
+    <string name="confirm_delete_session">Confirm Delete Session</string>
+    <string name="delete_session_message">Are you sure you want to delete session \"%s\"?\n\nThis action cannot be undone and all data in the session will be permanently lost.</string>
+    <string name="delete">Delete</string>
+    <string name="cancel">Cancel</string>
+    <string name="new_session">New Session</string>
+    <string name="close_session">Close Session</string>
+    <string name="executing">Executing…</string>
     <string name="interrupt_key">Ctrl+C</string>
-    <string name="interrupt">中断</string>
-    <string name="environment_setup">环境配置</string>
-    <string name="terminal_exited_with_code">终端已退出，退出码：%1$d</string>
-    <string name="settings">设置</string>
+    <string name="interrupt">Interrupt</string>
+    <string name="environment_setup">Environment Setup</string>
+    <string name="terminal_exited_with_code">Terminal exited with code %1$d</string>
+    <string name="settings">Settings</string>
     
     <!-- Additional new strings -->
-    <string name="initializing">正在初始化...</string>
-    <string name="new_version_found">发现新版本: %1$s</string>
-    <string name="update_check_failed_short">检查更新失败</string>
-    <string name="cannot_open_browser">无法打开浏览器</string>
-    <string name="ftp_server_running_info">FTP服务器正在运行\n地址: %1$s:%2$s\n用户名: %3$s\n密码: %4$s\n根目录: Ubuntu文件系统</string>
-    <string name="unknown_session">未知会话</string>
+    <string name="initializing">Initializing...</string>
+    <string name="new_version_found">New version found: %1$s</string>
+    <string name="update_check_failed_short">Update check failed</string>
+    <string name="cannot_open_browser">Cannot open browser</string>
+    <string name="ftp_server_running_info">FTP Server Running\nAddress: %1$s:%2$s\nUsername: %3$s\nPassword: %4$s\nRoot Directory: Ubuntu File System</string>
+    <string name="unknown_session">Unknown Session</string>
     
     <!-- SSH Tools Check -->
-    <string name="ssh_tools_missing_title">SSH 工具未安装</string>
-    <string name="ssh_tools_missing_message">启用 SSH 连接需要安装以下工具：\n\n• ssh - SSH 客户端\n• sshpass - SSH 密码认证工具\n\n请前往"环境配置"页面安装 SSH 工具。</string>
-    <string name="go_to_setup">前往配置</string>
-    <string name="checking_ssh_tools">正在检查 SSH 工具...</string>
+    <string name="ssh_tools_missing_title">SSH Tools Not Installed</string>
+    <string name="ssh_tools_missing_message">Enabling SSH connection requires the following tools:\n\n• ssh - SSH client\n• sshpass - SSH password authentication tool\n\n Please go to the "Environment Setup" page to install SSH tools.</string>
+    <string name="go_to_setup">Go to Setup</string>
+    <string name="checking_ssh_tools">Checking SSH tools...</string>
     
     <!-- Shared TMP Settings -->
-    <string name="shared_tmp_title">共享临时目录</string>
-    <string name="shared_tmp_enabled_desc">已启用 - Android 和 Ubuntu 共享 /tmp 目录</string>
-    <string name="shared_tmp_disabled_desc">已禁用 - Ubuntu 使用独立的 /tmp 目录</string>
-    <string name="shared_tmp_note">注意：某些设备可能在共享模式下出现兼容性问题，如遇错误可尝试禁用此选项</string>
+    <string name="shared_tmp_title">Shared Temporary Directory</string>
+    <string name="shared_tmp_enabled_desc">Enabled - Android and Ubuntu share /tmp directory</string>
+    <string name="shared_tmp_disabled_desc">Disabled - Ubuntu uses separate /tmp directory</string>
+    <string name="shared_tmp_note">Note: Some devices may experience compatibility issues in shared mode. Try disabling this option if errors occur</string>
 
-    <string name="chroot_mode_title">chroot 模式</string>
-    <string name="chroot_mode_enabled_desc">已启用 - 使用 chroot 启动 Ubuntu（需要 Root）</string>
-    <string name="chroot_mode_disabled_desc">已禁用 - 使用 proot 启动 Ubuntu</string>
-    <string name="chroot_mode_note">注意：chroot 模式会将 /proc、/sys、/dev（含 /dev/pts）挂载到 Ubuntu 环境中，请各位 Root 用户谨慎对待。并且该模式需要设备已 Root 且授予本应用 Root 权限，否则可能无法启动</string>
-    <string name="chroot_mount_check">检测挂载</string>
-    <string name="chroot_mount_unmount">解挂载</string>
-    <string name="chroot_mount_status_idle">尚未检测 chroot 挂载</string>
-    <string name="chroot_mount_status_checking">正在检测 chroot 挂载…</string>
-    <string name="chroot_mount_status_unmounting">正在解挂载 chroot 挂载…</string>
-    <string name="chroot_mount_status_none">当前未检测到 chroot 硬挂载</string>
-    <string name="chroot_mount_status_detected">当前检测到 %1$d 个 chroot 硬挂载</string>
-    <string name="chroot_mount_status_unmounted">已解挂载 %1$d 个 chroot 硬挂载</string>
-    <string name="chroot_mount_status_failed">挂载操作失败：%1$s</string>
-    <string name="chroot_mount_details_title">当前挂载点：</string>
-
+    <string name="chroot_mode_title">chroot Mode</string>
+    <string name="chroot_mode_enabled_desc">Enabled - Start Ubuntu via chroot (Root required)</string>
+    <string name="chroot_mode_disabled_desc">Disabled - Start Ubuntu via proot</string>
+    <string name="chroot_mode_note">Note: chroot mode mounts /proc, /sys, /dev (including /dev/pts) into the Ubuntu environment. Root users, please use with caution. This mode requires a rooted device and root permission granted to this app, otherwise startup may fail</string>
+    <string name="chroot_mount_check">Inspect Mounts</string>
+    <string name="chroot_mount_unmount">Unmount</string>
+    <string name="chroot_mount_status_idle">chroot mounts have not been inspected yet</string>
+    <string name="chroot_mount_status_checking">Inspecting chroot mounts…</string>
+    <string name="chroot_mount_status_unmounting">Unmounting chroot mounts…</string>
+    <string name="chroot_mount_status_none">No active chroot hard mounts detected</string>
+    <string name="chroot_mount_status_detected">Detected %1$d active chroot hard mounts</string>
+    <string name="chroot_mount_status_unmounted">Unmounted %1$d chroot hard mounts</string>
+    <string name="chroot_mount_status_failed">Mount operation failed: %1$s</string>
+    <string name="chroot_mount_details_title">Current mount points:</string>
+    
     <!-- SSH Settings -->
-    <string name="ssh_enable_title">启用 SSH 连接</string>
-    <string name="ssh_use_remote_desc">使用远程 SSH 终端</string>
-    <string name="ssh_use_local_desc">使用本地终端</string>
-    <string name="ssh_reverse_mount_enabled">✓ 反向挂载已启用</string>
-    <string name="ssh_reverse_mount_desc">远程可通过 ~/storage 和 ~/sdcard 访问本地文件</string>
-    <string name="ssh_config_required">请先配置 SSH 连接信息</string>
-    <string name="openssh_missing_title">缺少 OpenSSH Server</string>
-    <string name="openssh_missing_desc">启用反向挂载需要安装以下组件：</string>
-    <string name="openssh_local_component">✓ 本地（Android）：openssh-server</string>
-    <string name="openssh_go_to_install">  → 请前往环境配置安装</string>
-    <string name="openssh_remote_component">✓ 远程服务器：sshfs</string>
-    <string name="openssh_remote_install">  → 在远程服务器执行：</string>
+    <string name="ssh_enable_title">Enable SSH Connection</string>
+    <string name="ssh_use_remote_desc">Using remote SSH terminal</string>
+    <string name="ssh_use_local_desc">Using local terminal</string>
+    <string name="ssh_reverse_mount_enabled"> Reverse Mount Enabled</string>
+    <string name="ssh_reverse_mount_desc">Remote can access local files via ~/storage and ~/sdcard</string>
+    <string name="ssh_config_required">Please configure SSH connection first</string>
+    <string name="openssh_missing_title">OpenSSH Server Missing</string>
+    <string name="openssh_missing_desc">Enabling reverse mount requires the following components:</string>
+    <string name="openssh_local_component">✓ Local (Android): openssh-server</string>
+    <string name="openssh_go_to_install">  → Go to Environment Setup to install</string>
+    <string name="openssh_remote_component">✓ Remote Server: sshfs</string>
+    <string name="openssh_remote_install">  → Execute on remote server:</string>
     <string name="openssh_install_ubuntu_cmd">     apt install sshfs  # Ubuntu/Debian</string>
     <string name="openssh_install_centos_cmd">     yum install fuse-sshfs  # CentOS/RHEL</string>
-    <string name="openssh_install_button">去安装 openssh-server</string>
+    <string name="openssh_install_button">Install openssh-server</string>
     
     <!-- Font Settings -->
-    <string name="font_settings_title">终端字体设置</string>
-    <string name="font_size_title">字体大小</string>
-    <string name="target_fps_title">渲染帧率</string>
-    <string name="font_path_title">字体文件路径</string>
-    <string name="font_name_title">系统字体名称</string>
-    <string name="font_not_set">未设置（使用默认字体）</string>
-    <string name="font_reset_default">重置为默认设置</string>
-    <string name="font_size_dialog_title">设置字体大小</string>
-    <string name="font_size_label">字体大小 (sp)</string>
-    <string name="target_fps_dialog_title">设置渲染帧率</string>
-    <string name="target_fps_label">目标帧率 (FPS)</string>
-    <string name="target_fps_hint">范围：15-120，建议 30-60。数值越高越流畅，但功耗更高。</string>
-    <string name="font_path_dialog_title">设置字体文件路径</string>
-    <string name="font_path_label">字体文件路径</string>
-    <string name="font_path_hint">留空则使用默认字体</string>
-    <string name="font_name_dialog_title">设置系统字体名称</string>
-    <string name="font_name_label">系统字体名称</string>
-    <string name="font_name_placeholder">例如: monospace, serif, sans-serif</string>
-    <string name="font_name_hint">留空则使用默认字体。常用值：monospace, serif, sans-serif</string>
+    <string name="font_settings_title">Terminal Font Settings</string>
+    <string name="font_size_title">Font Size</string>
+    <string name="target_fps_title">Render Frame Rate</string>
+    <string name="font_path_title">Font File Path</string>
+    <string name="font_name_title">System Font Name</string>
+    <string name="font_not_set">Not set (using default font)</string>
+    <string name="font_reset_default">Reset to Default</string>
+    <string name="font_size_dialog_title">Set Font Size</string>
+    <string name="font_size_label">Font Size (sp)</string>
+    <string name="target_fps_dialog_title">Set Render Frame Rate</string>
+    <string name="target_fps_label">Target Frame Rate (FPS)</string>
+    <string name="target_fps_hint">Range: 15-120. Recommended: 30-60. Higher values are smoother but use more power.</string>
+    <string name="font_path_dialog_title">Set Font File Path</string>
+    <string name="font_path_label">Font File Path</string>
+    <string name="font_path_hint">Leave empty to use default font</string>
+    <string name="font_name_dialog_title">Set System Font Name</string>
+    <string name="font_name_label">System Font Name</string>
+    <string name="font_name_placeholder">e.g.: monospace, serif, sans-serif</string>
+    <string name="font_name_hint">Leave empty to use default font. Common values: monospace, serif, sans-serif</string>
 
     <!-- Virtual Keyboard Settings -->
-    <string name="virtual_keyboard_settings_title">虚拟按键设置</string>
-    <string name="virtual_keyboard_custom_title">两排按键自定义</string>
-    <string name="virtual_keyboard_dialog_title">编辑两排按键</string>
-    <string name="virtual_keyboard_reset_default">恢复默认</string>
-    <string name="virtual_keyboard_row_one">第一排</string>
-    <string name="virtual_keyboard_row_two">第二排</string>
-    <string name="virtual_keyboard_key_label">显示文本</string>
-    <string name="virtual_keyboard_key_value">发送内容</string>
-    <string name="virtual_keyboard_action_send">发送</string>
+    <string name="virtual_keyboard_settings_title">Virtual Keyboard Settings</string>
+    <string name="virtual_keyboard_custom_title">Customize Two Rows</string>
+    <string name="virtual_keyboard_dialog_title">Edit Two Keyboard Rows</string>
+    <string name="virtual_keyboard_reset_default">Reset Default</string>
+    <string name="virtual_keyboard_row_one">Row 1</string>
+    <string name="virtual_keyboard_row_two">Row 2</string>
+    <string name="virtual_keyboard_key_label">Display Text</string>
+    <string name="virtual_keyboard_key_value">Send Value</string>
+    <string name="virtual_keyboard_action_send">Send</string>
     <string name="virtual_keyboard_action_ctrl">CTRL</string>
     <string name="virtual_keyboard_action_alt">ALT</string>
-    <string name="virtual_keyboard_value_hint">发送内容支持转义：\\e(ESC)、\\t(Tab)、\\n、\\r、\\\\。</string>
+    <string name="virtual_keyboard_value_hint">Escape sequences: \\e (ESC), \\t (Tab), \\n, \\r, \\\\.</string>
     
     <!-- Source Management -->
-    <string name="source_management_title">软件源管理</string>
-    <string name="source_current">当前源: %s</string>
-    <string name="select_source_title">选择 %s 源</string>
+    <string name="source_management_title">Software Source Management</string>
+    <string name="source_current">Current Source: %s</string>
+    <string name="select_source_title">Select %s Source</string>
     
     <!-- Common Actions -->
-    <string name="confirm">确定</string>
-    <string name="add">添加</string>
-    <string name="delete_source">删除</string>
-    <string name="add_custom_source_title">添加自定义 %s 源</string>
-    <string name="source_name_label">源名称</string>
-    <string name="source_url_label">源地址</string>
-    <string name="terminal_accessibility_line">第%1$d行：%2$s</string>
-    <string name="terminal_accessibility_session_tab">会话“%1$s”</string>
-    <string name="terminal_accessibility_current_session_tab">当前会话“%1$s”</string>
-    <string name="terminal_accessibility_close_session_tab">关闭会话“%1$s”</string>
-</resources> 
+    <string name="confirm">Confirm</string>
+    <string name="add">Add</string>
+    <string name="delete_source">Delete</string>
+    <string name="add_custom_source_title">Add Custom %s Source</string>
+    <string name="source_name_label">Source Name</string>
+    <string name="source_url_label">Source URL</string>
+    <string name="terminal_accessibility_line">Line %1$d: %2$s</string>
+    <string name="terminal_accessibility_session_tab">Session "%1$s"</string>
+    <string name="terminal_accessibility_current_session_tab">Current session "%1$s"</string>
+    <string name="terminal_accessibility_close_session_tab">Close session \"%1$s\"</string>
+
+    <!-- SSH Connection Configuration -->
+    <string name="terminal_ssh_config_title">SSH Connection Configuration</string>
+    <string name="terminal_ssh_config_empty">No SSH configuration yet</string>
+    <string name="terminal_ssh_config_set_action">Set Up SSH Configuration</string>
+    <string name="terminal_ssh_config_auth_type">Authentication: %1$s</string>
+    <string name="terminal_ssh_auth_type_password">Password</string>
+    <string name="terminal_ssh_auth_type_public_key">Public Key</string>
+    <string name="terminal_ssh_config_exit_hint">Tip: use exit to leave SSH and return to the local terminal</string>
+    <string name="terminal_edit">Edit</string>
+    <string name="terminal_ssh_config_delete_title">Confirm Delete</string>
+    <string name="terminal_ssh_config_delete_message">Are you sure you want to delete this SSH configuration?</string>
+    <string name="terminal_ssh_config_add_title">Add SSH Configuration</string>
+    <string name="terminal_ssh_config_edit_title">Edit SSH Configuration</string>
+    <string name="terminal_ssh_field_host">Host</string>
+    <string name="terminal_ssh_field_port">Port</string>
+    <string name="terminal_ssh_field_username">Username</string>
+    <string name="terminal_ssh_auth_method_password">Password Auth</string>
+    <string name="terminal_ssh_auth_method_public_key">Public Key Auth</string>
+    <string name="terminal_ssh_field_password">Password</string>
+    <string name="terminal_ssh_field_private_key">Private Key Path</string>
+    <string name="terminal_ssh_field_passphrase">Key Passphrase (Optional)</string>
+    <string name="terminal_ssh_keepalive_enable">Enable Keep-Alive</string>
+    <string name="terminal_ssh_keepalive_desc">Prevents the connection from dropping due to inactivity</string>
+    <string name="terminal_ssh_keepalive_interval">Keep-Alive Interval (seconds)</string>
+    <string name="terminal_ssh_keepalive_tip">💡 Recommended: 30-60 seconds, sends a keep-alive packet to the server at this interval</string>
+    <string name="terminal_ssh_reverse_enable">Enable Reverse Mount</string>
+    <string name="terminal_ssh_reverse_desc">Allows the remote server to mount the local file system</string>
+    <string name="terminal_ssh_reverse_info_title">📋 Reverse Mount Info</string>
+    <string name="terminal_ssh_reverse_req_local">• Local requirement: openssh-server (install it in Environment Setup)</string>
+    <string name="terminal_ssh_reverse_req_remote">• Remote requirement: sshfs (install it on the remote server)</string>
+    <string name="terminal_ssh_reverse_access_note">Once enabled, the remote server can access local files via ~/storage and ~/sdcard</string>
+    <string name="terminal_ssh_field_remote_tunnel_port">Remote Tunnel Port</string>
+    <string name="terminal_ssh_field_local_port">Local SSH Port</string>
+    <string name="terminal_ssh_field_local_username">Local SSH Username</string>
+    <string name="terminal_ssh_field_local_password">Local SSH Password</string>
+    <string name="terminal_save">Save</string>
+
+    <!-- SetupScreen SSH Warning -->
+    <string name="terminal_package_openssh_server_name">OpenSSH Server</string>
+    <string name="terminal_package_openssh_server_desc">Used to mount the local file system over a reverse tunnel</string>
+    <string name="terminal_setup_ssh_mode_warning_title">SSH Mode Warning</string>
+    <string name="terminal_setup_ssh_mode_warning_message">Package detection on this page is inaccurate in SSH mode, please configure pnpm and python manually.</string>
+
+    <!-- Mirror Source Names -->
+    <string name="terminal_mirror_source_tuna">Tsinghua (TUNA)</string>
+    <string name="terminal_mirror_source_bfsu">BFSU</string>
+    <string name="terminal_mirror_source_aliyun">Aliyun</string>
+    <string name="terminal_mirror_source_ustc">USTC</string>
+    <string name="terminal_mirror_source_sjtu">Shanghai Jiao Tong (SJTUG)</string>
+    <string name="terminal_mirror_source_taobao">Taobao (npmmirror)</string>
+    <string name="terminal_mirror_source_tencent">Tencent</string>
+    <string name="terminal_mirror_source_huawei">Huawei Cloud</string>
+    <string name="terminal_mirror_source_official">Official</string>
+
+    <!-- SSHD Server -->
+    <string name="terminal_sshd_server_info">SSHD Server Running\nPort: %1$d\nUsername: %2$s\nRoot Directory: %3$s (/sdcard)</string>
+    <string name="terminal_sshd_server_not_running">SSHD server not running</string>
+
+    <!-- Source Update Notice -->
+    <string name="terminal_rust_source_updated">Rust mirror source updated to: %1$s. This source will be used the next time Rust is installed.</string>
+
+    <!-- Canvas Terminal Context Menu -->
+    <string name="terminal_menu_copy">Copy</string>
+</resources>
