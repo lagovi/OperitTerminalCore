@@ -1,7 +1,9 @@
 package com.ai.assistance.operit.terminal
 
 import android.content.Context
+import android.os.Build
 import android.util.Log
+import java.util.zip.ZipFile
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import java.io.File
@@ -603,13 +605,60 @@ class TerminalManager private constructor(
         File(filesDir, "tmp").mkdirs()
     }
 
+    /**
+     * Locate a terminal native library.
+     *
+     * The primary source is [nativeLibDir], which only contains files when the
+     * APK extracts its .so entries at install time. Builds with
+     * `useLegacyPackaging=false` keep .so files inside the APK, so as a
+     * fallback the library is extracted from our own APK
+     * (`applicationInfo.sourceDir`, `lib/<abi>/<libName>`) into [binDir].
+     * Returns null only when both sources fail; callers log that as an error
+     * and the session fails loudly instead of starting half-broken.
+     */
+    private fun resolveNativeLibSource(libName: String): File? {
+        val fromLibDir = File(nativeLibDir, libName)
+        if (fromLibDir.exists()) {
+            Log.d(TAG, "Using $libName from nativeLibraryDir")
+            return fromLibDir
+        }
+        val apkPath = context.applicationInfo.sourceDir
+        if (apkPath.isNullOrEmpty()) {
+            Log.e(TAG, "Cannot extract $libName: application sourceDir is empty")
+            return null
+        }
+        return try {
+            ZipFile(apkPath).use { apk ->
+                val entry = Build.SUPPORTED_ABIS.firstNotNullOfOrNull { abi ->
+                    apk.getEntry("lib/$abi/$libName")
+                }
+                if (entry == null) {
+                    Log.e(TAG, "Cannot extract $libName: no lib/<abi>/$libName entry in APK")
+                    return null
+                }
+                val outFile = File(binDir, libName)
+                apk.getInputStream(entry).use { input ->
+                    outFile.outputStream().use { output -> input.copyTo(output) }
+                }
+                outFile.setExecutable(true, false)
+                Log.d(TAG, "Extracted $libName (${entry.size} bytes) from APK to ${outFile.absolutePath}")
+                outFile
+            }
+        } catch (e: Exception) {
+            Log.e(TAG, "Failed to extract $libName from APK", e)
+            null
+        }
+    }
+
     private fun linkNativeLibs() {
         Log.d(TAG, "Linking native libraries from: $nativeLibDir")
 
         val nativeLibDirFile = File(nativeLibDir)
         if (!nativeLibDirFile.exists() || !nativeLibDirFile.isDirectory) {
-            Log.e(TAG, "Native library directory not found or is not a directory.")
-            return
+            // With useLegacyPackaging=false nativeLibraryDir may point at the
+            // APK itself or an empty dir; the per-file resolver below falls
+            // back to extracting from the APK, so this is not fatal.
+            Log.w(TAG, "Native library directory $nativeLibDir not usable, will extract from APK.")
         }
 
         Log.d(TAG, "Native lib directory contents:")
@@ -620,10 +669,10 @@ class TerminalManager private constructor(
         val busybox = File(binDir, "busybox")
 
         // First, we need to link busybox itself so we can use it.
-        val busyboxSo = File(nativeLibDir, "libbusybox.so")
-        Log.d(TAG, "Checking busybox: libbusybox.so exists = ${busyboxSo.exists()}, busybox exists = ${busybox.exists()}")
+        val busyboxSo = resolveNativeLibSource("libbusybox.so")
+        Log.d(TAG, "Checking busybox: libbusybox.so resolved = ${busyboxSo?.absolutePath}, busybox exists = ${busybox.exists()}")
 
-        if (!busyboxSo.exists()) {
+        if (busyboxSo == null) {
             Log.e(TAG, "libbusybox.so not found, cannot create busybox link")
             return
         }
@@ -670,15 +719,14 @@ class TerminalManager private constructor(
         )
 
         libraries.forEach { (libName, linkName) ->
-            val libFile = File(nativeLibDir, libName)
+            val libFile = resolveNativeLibSource(libName)
             val linkFile = File(binDir, linkName)
 
-            Log.d(TAG, "Checking $libName at ${libFile.absolutePath}, exists: ${libFile.exists()}")
-
-            if (!libFile.exists()) {
-                Log.w(TAG, "Native library not found: $libName")
+            if (libFile == null) {
+                Log.e(TAG, "Native library not found: $libName")
                 return@forEach
             }
+            Log.d(TAG, "Checking $libName at ${libFile.absolutePath}, exists: ${libFile.exists()}")
 
             // Always ensure proper link - remove any existing file/broken link first
             try {
