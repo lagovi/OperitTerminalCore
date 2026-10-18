@@ -118,7 +118,7 @@ class TerminalManager private constructor(
         }
 
         private const val TAG = "TerminalManager"
-        private const val UBUNTU_FILENAME = "ubuntu-noble-aarch64-pd-v4.18.0.tar.xz"
+        private const val UBUNTU_FILENAME = TerminalRootfs.ARCHIVE_NAME
         private const val MAX_HISTORY_ITEMS = 500
         private const val MAX_OUTPUT_LINES_PER_ITEM = 1000
         private const val TERMINAL_ENTER = "\r"
@@ -724,40 +724,37 @@ class TerminalManager private constructor(
         Files.createSymbolicLink(linkFile.toPath(), targetPath)
     }
 
-    private fun extractAssets() {
+    private suspend fun extractAssets() {
         try {
-            val assets = listOf(
-                UBUNTU_FILENAME,
-                "setup_fake_sysdata.sh"
-            )
-            assets.forEach { assetName ->
-                val assetFile = File(filesDir, assetName)
-                // 强制更新脚本文件，大文件只在不存在时提取
-                val shouldExtract = !assetFile.exists() || assetName == "setup_fake_sysdata.sh"
+            // The tiny bootstrap helper still ships inside the APK and is
+            // rewritten on every start so script fixes apply immediately.
+            val helperName = "setup_fake_sysdata.sh"
+            context.assets.open(helperName).use { input ->
+                val text =
+                    input
+                        .readBytes()
+                        .toString(Charsets.UTF_8)
+                        .removePrefix("\uFEFF")
+                        .replace("\r\n", "\n")
+                        .replace("\r", "\n")
+                File(filesDir, helperName).writeText(text, Charsets.UTF_8)
+            }
 
-                if (shouldExtract) {
-                    if (assetName.endsWith(".sh")) {
-                        context.assets.open(assetName).use { input ->
-                            val raw = input.readBytes()
-                            val text = raw.toString(Charsets.UTF_8)
-                            val normalized =
-                                text
-                                    .removePrefix("\uFEFF")
-                                    .replace("\r\n", "\n")
-                                    .replace("\r", "\n")
-                            assetFile.writeText(normalized, Charsets.UTF_8)
-                        }
-                    } else {
-                        context.assets.open(assetName).use { input ->
-                            assetFile.outputStream().use { output ->
-                                input.copyTo(output)
-                            }
-                        }
+            // The 61 MiB Ubuntu rootfs is no longer an APK asset: the host
+            // application downloads it from the fork's own release. It is only
+            // needed when Ubuntu still has to be unpacked, so an already
+            // installed terminal never triggers a transfer.
+            if (!TerminalRootfs.isInstalled(filesDir)) {
+                val archive = File(filesDir, UBUNTU_FILENAME)
+                val provider =
+                    checkNotNull(TerminalRootfs.provider) {
+                        "RootfsArchiveProvider is not installed; set " +
+                            "TerminalRootfs.provider in Application.onCreate"
                     }
-                    Log.d(TAG, "Extracted $assetName")
-                } else {
-                    Log.d(TAG, "Asset $assetName already exists.")
+                provider.ensureArchive(archive).getOrElse { error ->
+                    throw IOException("Ubuntu rootfs archive is unavailable", error)
                 }
+                Log.d(TAG, "Rootfs archive ready at ${archive.absolutePath}")
             }
         } catch (e: IOException) {
             Log.e(TAG, "Failed to extract assets", e)
