@@ -307,7 +307,7 @@ fun TerminalHome(
                 // 终端输出区域
                 CanvasTerminalScreen(
                     emulator = env.terminalEmulator,
-                    modifier = Modifier.weight(1f),
+                    modifier = Modifier.weight(1f).terminalHelpAnchor("terminal_output"),
                     config = fontConfig,
                     pty = currentPty,
                     imeAnimationOffsetPx = fullscreenImeBottomPx,
@@ -330,6 +330,7 @@ fun TerminalHome(
                         }
                 ) {
                     VirtualKeyboard(
+                        modifier = Modifier.terminalHelpAnchor("terminal_extra_keys"),
                         onKeyPress = { key -> sendDirectInput(decodeVirtualKeyValue(key)) },
                         onToggleCtrl = { ctrlActive = !ctrlActive },
                         onToggleAlt = { altActive = !altActive },
@@ -353,7 +354,7 @@ fun TerminalHome(
                     // 直接输入模式：使用与全屏相同的 CanvasTerminalScreen，点击画布时由 CanvasTerminalView 自己弹出输入法
                     CanvasTerminalScreen(
                         emulator = env.terminalEmulator,
-                        modifier = Modifier.weight(1f),
+                        modifier = Modifier.weight(1f).terminalHelpAnchor("terminal_output"),
                         config = fontConfig,
                         pty = currentPty,
                         imeAnimationOffsetPx = standardImeBottomPx,
@@ -372,7 +373,7 @@ fun TerminalHome(
                     // 嵌入聊天页时，外层已统一处理 IME；独立终端页则继续使用本地 IME 位移来驱动画布 viewport。
                     CanvasTerminalOutput(
                         emulator = env.terminalEmulator,
-                        modifier = Modifier.weight(1f),
+                        modifier = Modifier.weight(1f).terminalHelpAnchor("terminal_output"),
                         config = fontConfig,
                         pty = currentPty,
                         imeAnimationOffsetPx = standardImeBottomPx,
@@ -417,7 +418,8 @@ fun TerminalHome(
                         Row(
                             modifier = Modifier
                                 .fillMaxWidth()
-                                .padding(padding),
+                                .padding(padding)
+                                .terminalHelpAnchor("terminal_input"),
                             verticalAlignment = Alignment.CenterVertically
                         ) {
                             Surface(
@@ -487,6 +489,7 @@ fun TerminalHome(
 
                     if (showVirtualKeyboard) {
                         VirtualKeyboard(
+                            modifier = Modifier.terminalHelpAnchor("terminal_extra_keys"),
                             onKeyPress = { key -> sendDirectInput(decodeVirtualKeyValue(key)) },
                             onToggleCtrl = { ctrlActive = !ctrlActive },
                             onToggleAlt = { altActive = !altActive },
@@ -658,7 +661,9 @@ private fun TerminalToolbar(
 
             // 环境配置按钮
             Surface(
-                modifier = Modifier.clickable { onNavigateToSetup() },
+                modifier = Modifier
+                    .clickable { onNavigateToSetup() }
+                    .terminalHelpAnchor("terminal_setup"),
                 color = Color(0xFF4A4A4A),
                 shape = RoundedCornerShape(6.dp)
             ) {
@@ -714,6 +719,7 @@ private fun TerminalToolbar(
                     .clickable { onNavigateToSettings() }
                     .padding(start = padding)
                     .size(padding * 2.5f)
+                    .terminalHelpAnchor("terminal_settings")
             )
         }
     }
@@ -721,6 +727,7 @@ private fun TerminalToolbar(
 
 @Composable
 private fun VirtualKeyboard(
+    modifier: Modifier = Modifier,
     onKeyPress: (String) -> Unit,
     onToggleCtrl: () -> Unit,
     onToggleAlt: () -> Unit,
@@ -731,7 +738,7 @@ private fun VirtualKeyboard(
     padding: androidx.compose.ui.unit.Dp
 ) {
     Surface(
-        modifier = Modifier.fillMaxWidth(),
+        modifier = modifier.fillMaxWidth(),
         color = Color(0xFF1A1A1A),
         shadowElevation = 4.dp
     ) {

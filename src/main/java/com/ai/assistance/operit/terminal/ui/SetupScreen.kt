@@ -250,6 +250,7 @@ fun SetupScreen(
             .fillMaxSize()
             .background(Color(0xFF1A1A1A))
             .padding(16.dp)
+            .terminalHelpAnchor("terminal_setup")
     ) {
         // 标题
         Text(
